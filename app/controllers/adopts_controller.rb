@@ -16,7 +16,7 @@ class AdoptsController < ApplicationController
   # POST /adopts
   def create
     @adopt = Adopt.new(adopt_params)
-    @adopt.user_id = current_user.id
+    @adopt.user = current_user
 
     if @adopt.save
       render json: @adopt, status: :created, location: @adopt
@@ -47,6 +47,6 @@ class AdoptsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def adopt_params
-      params.require(:adopt).permit(:user_id, :animal_id, :amount)
+      params.permit(:user_id, :animal_id, :amount)
     end
 end
