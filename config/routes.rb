@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :names
   scope :api do
     resources :users, except: [:create]
     resources :adopts
